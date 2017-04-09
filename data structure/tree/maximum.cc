@@ -33,21 +33,21 @@ int GetMaxWidth(Node t){
         Q.pop();
 
         if (tmp->data != -1){
+            width++;
             if (tmp->left){
-                width++;
                 Q.push(tmp->left);
             } 
             if (tmp->right){
-                width++;
                 Q.push(tmp->right);
             } 
         }
 
         else{
-            if (Q.empty()) return maxwidth;
             if (width >= maxwidth)
                 maxwidth = width;
             width = 0;
+
+            if (Q.empty()) return maxwidth;
             Q.push(check);
         }
     }
@@ -57,25 +57,25 @@ int GetMaxWidth(Node t){
 int main()
 {
     Node root = new node(1);
-    //root->left	 = new node(2);
-    //root->right	 = new node(3);
-    //root->left->left = new node(4);
+    root->left	 = new node(2);
+    root->right	 = new node(3);
+    root->left->left = new node(4);
     //root->left->left->left = new node(4);
     //root->left->left->right = new node(4);
-    //root->left->right = new node(5);
-    //root->right->right = new node(8); 
-    //root->right->right->left = new node(6); 
-    //root->right->right->right = new node(7);	 
+    root->left->right = new node(5);
+    root->right->right = new node(8); 
+    root->right->right->left = new node(6); 
+    root->right->right->right = new node(7);	 
 
     /*
     Constructed bunary tree is:
-            1
+             1
             / \
-        2 3
-        / \	 \
-        4 5	 8 
+          2    3
+         / \	\
+        4  5	 8 
                 / \
-                6 7
+               6   7
     */
     printf("Maximum width is %d \n", GetMaxWidth(root));
     return 0;
